@@ -1,0 +1,137 @@
+
+-- CK16/Silverian
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ScreenGui.Name = "Rc7"
+
+local ImageExecutor = Instance.new("ImageLabel")
+ImageExecutor.Size = UDim2.new(0, 400, 0, 350)
+ImageExecutor.Position = UDim2.new(0.5, -200, 0.5, -175)
+ImageExecutor.Image = "rbxassetid://75994159897123"
+ImageExecutor.BackgroundTransparency = 1
+ImageExecutor.Parent = ScreenGui
+
+local dragging = false
+local dragInput, dragStart, startPos
+
+ImageExecutor.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+        dragging = true
+        dragStart = input.Position
+        startPos = ImageExecutor.Position
+
+
+        input.Changed:Connect(function()
+            if input.UserInputState == Enum.UserInputState.End then
+                dragging = false
+            end
+        end)
+    end
+end)
+
+ImageExecutor.InputChanged:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+        dragInput = input
+    end
+end)
+
+game:GetService("UserInputService").InputChanged:Connect(function(input)
+    if input == dragInput and dragging then
+        local delta = input.Position - dragStart
+        ImageExecutor.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+    end
+end)
+
+local ScrollingFrame = Instance.new("ScrollingFrame")
+ScrollingFrame.Size = UDim2.new(0, 360, 0, 140)
+ScrollingFrame.Position = UDim2.new(0, 20, 0, 40)
+ScrollingFrame.CanvasSize = UDim2.new(0, 0, 0, 0)
+ScrollingFrame.ScrollBarThickness = 4
+ScrollingFrame.BackgroundTransparency = 1
+ScrollingFrame.Parent = ImageExecutor
+
+local TextBox = Instance.new("TextBox")
+TextBox.Name = "input"
+TextBox.Parent = ScrollingFrame
+TextBox.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextBox.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextBox.BorderSizePixel = 0
+TextBox.Position = UDim2.new(0.0343839526, 0, 0, 0)
+TextBox.Size = UDim2.new(0, 296, 0, 120)
+TextBox.Font = Enum.Font.Arial
+TextBox.MultiLine = true
+TextBox.Text = ""
+TextBox.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextBox.TextSize = 14.000
+TextBox.TextWrapped = true
+TextBox.TextXAlignment = Enum.TextXAlignment.Left
+TextBox.TextYAlignment = Enum.TextYAlignment.Top
+TextBox.BackgroundTransparency = 1 
+TextBox.ClearTextOnFocus = false 
+TextBox.Parent = ScrollingFrame
+
+local UIPadding = Instance.new("UIPadding")
+UIPadding.PaddingTop = UDim.new(0, 5)
+UIPadding.PaddingLeft = UDim.new(0, 5)
+UIPadding.Parent = TextBox
+
+TextBox:GetPropertyChangedSignal("TextBounds"):Connect(function()
+    local canvasHeight = TextBox.TextBounds.Y + 10
+    ScrollingFrame.CanvasSize = UDim2.new(0, 0, 0, canvasHeight)
+end)
+
+local OpenButton = Instance.new("TextButton")
+OpenButton.Size = UDim2.new(0, 110, 0, 40)
+OpenButton.Position = UDim2.new(0, 20, 0, 250)
+OpenButton.Text = ""
+OpenButton.BackgroundTransparency = 1
+OpenButton.Parent = ImageExecutor
+
+local ExecuteButton = Instance.new("TextButton")
+ExecuteButton.Size = UDim2.new(0, 110, 0, 40)
+ExecuteButton.Position = UDim2.new(0, 145, 0, 250)
+ExecuteButton.Text = ""
+ExecuteButton.BackgroundTransparency = 1
+ExecuteButton.Parent = ImageExecutor
+
+local ClearButton = Instance.new("TextButton")
+ClearButton.Size = UDim2.new(0, 110, 0, 40)
+ClearButton.Position = UDim2.new(0, 270, 0, 250)
+ClearButton.Text = ""
+ClearButton.BackgroundTransparency = 1 
+ClearButton.Parent = ImageExecutor
+
+local CloseButton = Instance.new("TextButton")
+CloseButton.Size = UDim2.new(0, 30, 0, 30) 
+CloseButton.Position = UDim2.new(0, 370, 0, 5) 
+CloseButton.Text = ""
+CloseButton.BackgroundTransparency = 1 
+CloseButton.Font = Enum.Font.SourceSans
+CloseButton.Parent = ImageExecutor
+
+CloseButton.MouseButton1Click:Connect(function()
+    ScreenGui:Destroy()
+end)
+
+ExecuteButton.MouseButton1Click:Connect(function()
+    local scriptText = TextBox.Text
+    if scriptText and scriptText ~= "" then
+        local success, errorMessage = pcall(function()
+            loadstring(scriptText)()
+        end)
+
+        if not success then
+            print("Error: " .. errorMessage)
+        end
+    else
+        print("No script entered")
+    end
+end)
+
+OpenButton.MouseButton1Click:Connect(function()
+    TextBox.Text = "-- Example script loaded! Replace this with actual functionality."
+end)
+
+ClearButton.MouseButton1Click:Connect(function()
+    TextBox.Text = ""
+end)
