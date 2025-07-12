@@ -4,7 +4,7 @@
 -- Instances:
 game:GetService("StarterGui"):SetCore("SendNotification",{ 	Title = "welcome to rick7 intriga by elijah",  	
 
-Text = "pass is Rc7Cracked",
+Text = "pass is none you can enter what you want",
 
 })
 
@@ -88,16 +88,8 @@ submit.Text = ""
 submit.TextColor3 = Color3.fromRGB(0, 0, 0)
 submit.TextSize = 14.000
 submit.MouseButton1Down:connect(function()
-	if pass.Text == "Rc7Cracked" then
-		passpage.Visible = false
-		mainpage.Visible = true
-	else
-		pass.Text = "Wrong Password!"
-		wait(2)
-		pass.Text = ""
-	end
-end)
-
+passpage.Visible = false
+mainpage.Visible = true
 user.Name = "user"
 user.Parent = passpage
 user.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
