@@ -59,7 +59,7 @@ mini.BorderSizePixel = 0
 mini.Position = UDim2.new(0, 0, 0.894399107, 0)
 mini.Size = UDim2.new(0, 58, 0, 60)
 mini.Visible = false
-mini.Image = "http://www.roblox.com/asset/?id=86327153579278"
+mini.Image = "rbxassetid://40592861074736"
 mini.MouseButton1Down:connect(function()
 	mainpage.Visible = true
 mini.Visible = false
