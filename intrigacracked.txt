@@ -14,7 +14,7 @@ ScreenGui.Name = "Rc7"
 local ImageExecutor = Instance.new("ImageLabel")
 ImageExecutor.Size = UDim2.new(0, 400, 0, 350)
 ImageExecutor.Position = UDim2.new(0.5, -200, 0.5, -175)
-ImageExecutor.Image = "rbxassetid://75994159897123"
+ImageExecutor.Image = "rbxassetid://101138534625918"
 ImageExecutor.BackgroundTransparency = 1
 ImageExecutor.Parent = ScreenGui
 
