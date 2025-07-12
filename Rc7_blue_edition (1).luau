@@ -2,17 +2,17 @@
 -- Version: 3.2
 
 -- Instances:
-game:GetService("StarterGui"):SetCore("SendNotification",{ 	Title = "Rc7",  	
+game:GetService("StarterGui"):SetCore("SendNotification",{ 	Title = "welcome to rick7 intriga by elijah",  	
 
-Text = "password: Rc7Cracked",
+Text = "pass is niggers stink",
 
 })
 
 game:GetService("StarterGui"):SetCore("SendNotification",{ 	
 
-Title = "wait...",  	
+Title = "welcome to rick7 intriga by elijah",  	
 
-Text = "loading...",
+Text = "welcome to rick7 intriga by elijah",
 
 })
 
@@ -20,9 +20,9 @@ wait(3)
 
 game:GetService("StarterGui"):SetCore("SendNotification",{ 	
 
-Title = "loaded!",  	
+Title = "welcome to rick7 intriga by elijah",  	
 
-Text = "Have fun!",
+Text = "welcome to rick7 intriga by elijah",
 
 })
 local rc7 = Instance.new("ScreenGui")
@@ -59,7 +59,7 @@ mini.BorderSizePixel = 0
 mini.Position = UDim2.new(0, 0, 0.894399107, 0)
 mini.Size = UDim2.new(0, 58, 0, 60)
 mini.Visible = false
-mini.Image = "http://www.roblox.com/asset/?id=86327153579278"
+mini.Image = "rbxassetid://140592861074736"
 mini.MouseButton1Down:connect(function()
 	mainpage.Visible = true
 mini.Visible = false
@@ -88,7 +88,7 @@ submit.Text = ""
 submit.TextColor3 = Color3.fromRGB(0, 0, 0)
 submit.TextSize = 14.000
 submit.MouseButton1Down:connect(function()
-	if pass.Text == "Rc7Cracked" then
+	if pass.Text == "niggers stink" then
 		passpage.Visible = false
 		mainpage.Visible = true
 	else
